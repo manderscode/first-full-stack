@@ -1,0 +1,63 @@
+<!doctype html>
+<html>
+<head>
+    <title>Sad Girl Cafe</title>
+    <!-- <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"> -->
+    <script src="https://kit.fontawesome.com/b350ecca7b.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Arvo:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <h1>Sad Girl Cafe</h1>
+    <div class="col-sm-6">
+      <h2> We no longer drink water, but we drink our own tears! 💪</h2>
+      <h3>Customer Orders Are Displayed Here:</h3>
+      <div class="messages">
+      <% for(var i=0; i<messages.length; i++) {%>
+        <section class="message">
+          <h3 class="email">Email: <%= messages[i].email %></h3>
+          <%console.log(messages[i].completed)%>
+          <h2 class="name"><%= messages[i].name %></h2>
+          <h4 class="order"><%= messages[i].order %></h4>
+          <span><i class="fa-solid fa-check-double"></i></span>
+          <span><i class="fa-solid fa-trash-can"></i></span>
+          <span> 
+          <%   
+          let completedMessage = "";
+            if (messages[i].completed ===true){ 
+              completedMessage = "done"
+            }
+          %>
+          <%=completedMessage;%> 
+        </span>
+        </section>
+      <% } %>
+      </div>
+
+      <h2>Submit Customer Orders</h2>
+    <% if (user.local.email) { %>
+      <section class="input">
+      <form action="/submitOrder" method="POST">
+        <input class="subEmail" type="text" value="<%= user.local.email %>" name="email">
+        <input class="subName" type="text" placeholder="Customer Name" name="name">
+        <input class="subOrder" type="text" placeholder="Order" name="order">
+        <button type="submit">Submit Order</button>
+      </form>
+      </section>
+    </div>
+    <% } %>
+
+</form>
+
+<a class="login" href="/login">Barista Account</a>
+
+<script src="main.js"></script>
+
+</body>
+</html>
